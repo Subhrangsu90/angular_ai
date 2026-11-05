@@ -4,7 +4,7 @@ Phase 1 · 9 Nov 2026 – 15 Nov 2026
 
 ## Learn (Mon–Thu)
 
-- [ ] [Tokens and the context window](./01-tokens-and-context-window.md)
+- [x] [Tokens and the context window](./01-tokens-and-context-window.md)
 - [ ] [Temperature and top-p sampling](./02-temperature-and-top-p.md)
 - [ ] [System vs user messages](./03-system-vs-user-messages.md)
 - [ ] [Embeddings: text to vectors, similarity search](./04-embeddings-and-similarity.md)
