@@ -1,0 +1,84 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% set j = journey %}
+<div class="jr-home">
+
+  <header class="jr-hero">
+    <h1 class="jr-title">Angular + AI<br>in 24&nbsp;weeks</h1>
+    <p class="jr-lede">
+      A working study log. It goes from how LLMs behave, through AI inside Angular apps,
+      RAG, on-device models and agents, to generative UI. Each week has notes, a lab and a
+      time log. Each phase ends with something shipped.
+    </p>
+    <div class="jr-actions">
+      {% if j.next_week %}
+      <a class="jr-btn jr-btn--primary" href="{{ j.next_week.url | url }}">Continue with Week {{ j.next_week.num }}</a>
+      {% endif %}
+      {% if j.plan_url %}
+      <a class="jr-btn" href="{{ j.plan_url | url }}">Read the plan</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="jr-timeline" aria-labelledby="jr-timeline-h">
+    <div class="jr-timeline-head">
+      <h2 id="jr-timeline-h">{{ j.done }} of {{ j.total }} tasks done</h2>
+      <p class="jr-when" data-jr-when data-start="{{ j.start }}" data-end="{{ j.end }}">
+        {{ j.start_label }} to {{ j.end_label }}
+      </p>
+    </div>
+
+    <div class="jr-strip">
+      {% for ph in j.phases %}
+      <div class="jr-group" style="--phase: var(--jr-phase-{{ ph.num }}); --n: {{ ph.weeks | length }}">
+        <ol class="jr-cells">
+          {% for w in ph.weeks %}
+          <li>
+            <a class="jr-cell{% if w.num > (j.weeks | length) // 2 %} jr-cell--late{% endif %}" href="{{ w.url | url }}"
+               style="--pct: {{ w.pct }}; --i: {{ w.num }};"
+               data-start="{{ w.start }}" data-end="{{ w.end }}"
+               aria-label="Week {{ w.num }}: {{ w.title | e }}, {{ w.done }} of {{ w.total }} tasks done">
+              <span class="jr-fill" aria-hidden="true"></span>
+              <span class="jr-num" aria-hidden="true">{{ w.num }}</span>
+              <span class="jr-tip" aria-hidden="true">Week {{ w.num }}: {{ w.title | e }}<br>{{ w.done }} of {{ w.total }} done</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+        <a class="jr-group-label" href="{{ ph.url | url }}">{{ ph.name }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="jr-phases" aria-labelledby="jr-phases-h">
+    <h2 id="jr-phases-h">Phases</h2>
+    <ol class="jr-phase-list">
+      {% for ph in j.phases %}
+      <li class="jr-phase" style="--phase: var(--jr-phase-{{ ph.num }})">
+        <div class="jr-phase-name">
+          <a href="{{ ph.url | url }}"><span class="jr-phase-num">Phase {{ ph.num }}</span>{{ ph.name }}</a>
+          <span class="jr-phase-span">{{ ph.span | capitalize }}</span>
+        </div>
+        <div class="jr-phase-body">
+          <p>{{ ph.goal }}</p>
+          <p class="jr-ships">Ships: {{ ph.ships }}</p>
+        </div>
+        <div class="jr-phase-progress">
+          <div class="jr-meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ ph.pct }}" aria-label="Phase {{ ph.num }} progress">
+            <span style="width: {{ ph.pct }}%"></span>
+          </div>
+          <span class="jr-count">{{ ph.done }} / {{ ph.total }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="jr-readme">
+    {{ page.content }}
+  </section>
+
+</div>
+{% endblock %}
