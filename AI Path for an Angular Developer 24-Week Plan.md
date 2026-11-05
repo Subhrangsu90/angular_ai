@@ -1,10 +1,10 @@
-# AI Path for an Angular Developer: 20-Week Plan
+# AI Path for an Angular Developer: 24-Week Plan
 
 Nov 4, 2026 · @Subhrangsu
 
 ## How to use this plan
 
-The plan takes 20 weeks at about 8–10 hours a week, alongside a full-time job. Every phase ends with a shipped project on GitHub, not just notes.
+The plan takes 24 weeks at about 8–10 hours a week, alongside a full-time job. Every phase ends with a shipped project on GitHub, not just notes.
 
 | Day | Time | What |
 | --- | --- | --- |
@@ -190,11 +190,43 @@ Goal: build multi-step agents and ship reusable work. Deliverables: an MCP serve
 - [ ] Signal-based APIs, provider-agnostic adapters (hosted, Ollama, in-browser)
 - [ ] Ship: publish `ngx-ai-chat` (or similar) with docs and a demo site
 
-After week 20, consider LoRA fine-tuning of the best-fitting open model for Inkframe, only if prompting plus RAG fall short.
+After week 24, consider LoRA fine-tuning of the best-fitting open model for Inkframe, only if prompting plus RAG fall short.
+
+## Phase 6 (Weeks 21–24): Generative and agentic UI
+
+Goal: let the model choose and assemble your real Angular components, and build UIs that show an agent's steps, shared state and approvals. Deliverable: an agentic admin dashboard for the e-commerce project.
+
+**Week 21: Generative UI from scratch**
+
+- [ ] Learn the spectrum: text → tool-call cards → model picks from a component catalog → model describes a whole surface in JSON
+- [ ] Learn why catalog-based is the safe default: the model only uses components you expose, never raw HTML or code
+- [ ] Build your own renderer: model returns a JSON spec, validate it with Zod, map it to components with `ViewContainerRef.createComponent`, render partial JSON while it streams
+- [ ] Build: "show my top products this month" answers with a table or chart component, not text
+
+**Week 22: Hashbrown (Angular-native generative UI)**
+
+- [ ] Expose components with `exposeComponent`, typed with Skillet schemas; use the signal-based `uiChatResource`
+- [ ] Try its recipes: natural-language forms, predictive suggestions, chatbot with tools
+- [ ] Wrap design-system components in smart wrappers that handle DI, stores and router
+- [ ] Build: generative UI chat over your own component library
+
+**Week 23: Agentic UI with AG-UI and CopilotKit**
+
+- [ ] Learn AG-UI events: run start/finish, text deltas, tool calls, state snapshots and deltas
+- [ ] Use CopilotKit for Angular: prebuilt chat or headless mode, shared state, human-in-the-loop
+- [ ] Learn agent UX patterns: step timeline, live tool-call cards, editable plan, approve or reject before an action, interrupt and resume
+- [ ] Build: an agent that drafts product listings; the user watches each step and approves before saving
+
+**Week 24: A2UI, MCP Apps and safety**
+
+- [ ] A2UI: agent-described surfaces rendered with `@a2ui/angular`; add a custom catalog of your components
+- [ ] MCP Apps: tool results shown as interactive widgets inside the chat
+- [ ] Safety: whitelist components, validate every prop, expose components by user role, never execute model-written code outside a sandbox
+- [ ] Ship: agentic admin dashboard demo; add a generative-UI renderer to your npm library; write "Generative UI in Angular" post
 
 ## Portfolio checklist and milestones
 
-By week 20 you should have six shipped projects and one npm package. Dates assume a start on Monday 9 Nov 2026.
+By week 24 you should have seven shipped projects and one npm package. Dates assume a start on Monday 9 Nov 2026.
 
 | Week | Target date | Milestone | Proof |
 | --- | --- | --- | --- |
@@ -204,6 +236,7 @@ By week 20 you should have six shipped projects and one npm package. Dates assum
 | 15 | 21 Feb 2027 | Spoken-English practice PWA | Live PWA |
 | 18 | 14 Mar 2027 | MCP server + voice laptop controller | Demo video |
 | 20 | 28 Mar 2027 | `ngx-ai-chat` on npm | npm page, docs site |
+| 24 | 25 Apr 2027 | Generative + agentic UI admin dashboard | Demo video, blog post |
 
 After each milestone:
 
@@ -228,3 +261,11 @@ Mostly free official docs; search each name to find the current page.
 | 4 | MediaPipe LLM Inference (Google AI Edge); WebLLM | LLMs in the browser |
 | 5 | modelcontextprotocol.io and the TypeScript SDK | Building MCP servers |
 | 5 | Hugging Face "LLM Course" / Unsloth docs | Fine-tuning open models later |
+
+Phase 6 links:
+
+- [Hashbrown docs, Angular quick start](https://hashbrown.dev/docs/angular/start/quick) — open-source generative UI for Angular, signal-based
+- [CopilotKit Angular announcement](https://dev.to/copilotkit/introducing-angular-support-for-copilotkit-bring-any-agent-into-your-app-2f3e) — AG-UI agents in Angular with generative UI, shared state, human-in-the-loop
+- [A2UI spec](https://a2ui.org/) — Google's agent-to-UI protocol with an Angular renderer
+- [Angular Architects: A2UI in Angular](https://www.angulararchitects.io/en/blog/a2ui-how-ai-generates-dynamic-uis-at-runtime/) — blog series covering AG-UI, A2UI, custom catalogs and MCP Apps in Angular
+- [Generative UI in Angular with a JSON spec](https://dev.to/shteynu/generative-ui-in-angular-the-llm-streams-a-json-spec-you-render-real-components-4lgf) — build-your-own renderer approach for week 21

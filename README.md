@@ -1,6 +1,6 @@
-# Angular + AI: 20-week learning repo
+# Angular + AI: 24-week learning repo
 
-Following [AI Path for an Angular Developer 20-Week Plan](./AI%20Path%20for%20an%20Angular%20Developer%2020-Week%20Plan.md). Start: Mon 9 Nov 2026.
+Following [AI Path for an Angular Developer 24-Week Plan](./AI%20Path%20for%20an%20Angular%20Developer%2024-Week%20Plan.md). Start: Mon 9 Nov 2026.
 
 ## Layout
 
@@ -18,3 +18,4 @@ Following [AI Path for an Angular Developer 20-Week Plan](./AI%20Path%20for%20an
 - [ ] [Phase 3: RAG and tool calling](./phase-3-rag-and-tool-calling/) (weeks 8–11)
 - [ ] [Phase 4: AI in the browser and voice](./phase-4-browser-ai-and-voice/) (weeks 12–15)
 - [ ] [Phase 5: Agents, MCP, production, npm library](./phase-5-agents-mcp-production/) (weeks 16–20)
+- [ ] [Phase 6: Generative and agentic UI](./phase-6-generative-and-agentic-ui/) (weeks 21–24)
